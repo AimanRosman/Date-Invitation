@@ -34,5 +34,147 @@
         <h2>See you soon!!!</h2>
         <p id="summaryText"></p>
     </div>
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f5cac3, #f7ede2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #main, #calendarContainer, #summaryContainer {
+            text-align: center;
+            vertical-align: middle;
+            width: 100%;
+        }
+
+        h1 {
+            color: #ff477e;
+        }
+
+        #yesButton {
+            background-color: #06d6a0;
+            transition: transform 0.3s;
+            margin-right: 10px;
+            width: 120px;
+            font-size: 30px;
+            height: 40px;
+            color: #fff;
+            margin-left: -140px;
+        }
+
+        #no {
+            background-color: #ef476f;
+            transition: transform 0.3s;
+            margin-left: 10px;
+            width: auto;
+            padding: 10px 20px;
+            font-size: 18px;
+            height: auto;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
+            display: inline-block;
+            position: absolute;
+        }
+
+        #calendarContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+            #summaryContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        text-align: center;
+        font-family: 'Verdana', sans-serif; /* Default font for the summary container */
+         }
+
+        #calendarContainer input, #confirmDateButton {
+            font-size: 22px;
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        #confirmDateButton {
+            background-color: #06d6a0;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        #summaryText {
+            font-size: 20px;
+            color: #333;
+        }
+    </style>
+
+    <script>
+        document.getElementById("yesButton").addEventListener("click", showAlert);
+
+        function showAlert() {
+            document.getElementById("main").style.display = "none"; // Hide main content
+            document.getElementById("calendarContainer").style.display = "flex"; // Show calendar
+        }
+
+        var yesButton = document.getElementById("yesButton");
+        var no = document.getElementById("no");
+        var valentineImage = document.getElementById("valentineImage");
+
+        var noTexts = ["Are you sure?", "But whyyyyy", "Alaa nak laaaa", "Pleaseeee :(", "Awak nak kan", "Kene pergi jugak"];
+        var imageSources = [
+            "https://content.imageresizer.com/images/memes/Sad-Cat-Looking-At-Phone-meme-4.jpg",
+            "https://i.pinimg.com/280x280_RS/fa/dc/ee/fadceefa6e7647c2a71e3bef47544053.jpg",
+            "https://p3.itc.cn/images01/20220721/3e78b2b6caa146b5aa1db7f6d9a4a7ff.jpeg",
+            "https://i.pinimg.com/736x/cb/d8/3b/cbd83b534a315e809a9da2b8cd3ac3bf.jpg"
+        ];
+
+        no.addEventListener("click", change);
+
+        function change() {
+            var randomIndex = Math.floor(Math.random() * noTexts.length);
+            var randomText = noTexts[randomIndex];
+            no.innerText = randomText;
+
+            var i = Math.floor(Math.random() * 1000) + 1;
+            var j = Math.floor(Math.random() * 700) + 1;
+            no.style.left = i + "px";
+            no.style.top = j + "px";
+
+            var currentWidth = yesButton.offsetWidth;
+            var currentHeight = yesButton.offsetHeight;
+            yesButton.style.width = currentWidth + 30 + "px";
+            yesButton.style.height = currentHeight + 10 + "px";
+
+            var randomImageIndex = Math.floor(Math.random() * imageSources.length);
+            valentineImage.src = imageSources[randomImageIndex];
+        }
+
+        document.getElementById("confirmDateButton").addEventListener("click", function () {
+            var selectedDate = document.getElementById("dateInput").value;
+            var selectedTime = document.getElementById("timeInput").value;
+            if (selectedDate && selectedTime) {
+                document.getElementById("calendarContainer").style.display = "none"; // Hide calendar
+                document.getElementById("summaryText").innerText = "We will meet on : " + selectedDate + " at " + selectedTime;
+                document.getElementById("summaryContainer").style.display = "flex"; // Show summary
+            } else {
+                alert("Please select both a date and a time.");
+            }
+        });
+    </script>
 </body>
 </html>
