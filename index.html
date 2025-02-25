@@ -98,7 +98,7 @@
         align-items: center;
         padding: 20px;
         text-align: center;
-        font-family: 'Verdana', sans-serif; /* Default font for the summary container */
+        font-family: 'Verdana', sans-serif; 
          }
 
         #calendarContainer input, #confirmDateButton {
@@ -127,8 +127,8 @@
         document.getElementById("yesButton").addEventListener("click", showAlert);
 
         function showAlert() {
-            document.getElementById("main").style.display = "none"; // Hide main content
-            document.getElementById("calendarContainer").style.display = "flex"; // Show calendar
+            document.getElementById("main").style.display = "none"; 
+            document.getElementById("calendarContainer").style.display = "flex"; 
         }
 
         var yesButton = document.getElementById("yesButton");
@@ -168,9 +168,9 @@
             var selectedDate = document.getElementById("dateInput").value;
             var selectedTime = document.getElementById("timeInput").value;
             if (selectedDate && selectedTime) {
-                document.getElementById("calendarContainer").style.display = "none"; // Hide calendar
+                document.getElementById("calendarContainer").style.display = "none";
                 document.getElementById("summaryText").innerText = "We will meet on : " + selectedDate + " at " + selectedTime;
-                document.getElementById("summaryContainer").style.display = "flex"; // Show summary
+                document.getElementById("summaryContainer").style.display = "flex"; 
             } else {
                 alert("Please select both a date and a time.");
             }
